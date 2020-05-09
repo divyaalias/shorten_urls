@@ -15,7 +15,7 @@
   <tbody>
     <% @urls.each do |url| %>
       <tr>
-        <% record = get_record(url)%>
+        <% record = Link.find_by_url(url)%>
         <td><%= record.url %></td>
         <td >&nbsp;<%= record.short%></td>
         <td>&nbsp;<%= record.clicked %></td>
