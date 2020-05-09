@@ -2,25 +2,25 @@ class LinksController < ApplicationController
 	before_action :set_post, only: [:show, :fetch_original_url]
   
   def create_url
+    @link = Link.new
+    @link.url = params[:url] if params[:url]
     if params[:url]
-      @link =  Link.new(url: params[:url])
-        if @link.url_exists?
-          @link = Link.find_by_url(params[:url])
-          redirect_to @link, notice: "Short link for this url is already exists in db. Please use the below given short url"
-        else
-          respond_to do |format|
-            if @link.save
-              format.js
-              format.html
-            else
-              format.js { render json: @link.errors , status: :unprocessable_entity}
-              format.html
-            end
+      #@link =  Link.new(url: params[:url])
+      if @link.url_exists?
+        @link = Link.find_by_url(params[:url])
+        redirect_to @link, notice: "Short link for this url is already exists in db. Please use the below given short url"
+      else
+        respond_to do |format|
+          if @link.save
+            format.js
+            format.html
+          else
+            format.js { render json: @link.errors , status: :unprocessable_entity}
+            format.html
           end
         end
-      else
-        @link = Link.new
       end
+    end
     @records = load_last_three_records
   end
 
