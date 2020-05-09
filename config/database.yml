@@ -1,16 +1,15 @@
 development:
   adapter: postgresql
-  database: my_database_development
+  encoding: unicode
+  database: myapp_dev
   pool: 5
-  timeout: 5000
-test:
-  adapter: postgresql
-  database: my_database_test
-  pool: 5
-  timeout: 5000
+  username: divyaalias
+  password:
 
 production:
   adapter: postgresql
-  database: my_database_production
+  host: localhost
+  encoding: utf8
+  reconnect: false
+  database: myapp_prod
   pool: 5
-  timeout: 5000
