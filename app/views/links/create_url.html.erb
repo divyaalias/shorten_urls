@@ -1,0 +1,26 @@
+<center>
+	<h2>Enter the Url</h2>
+	<%= form_with url: create_url_links_path do |f| %>
+	  <% if @link.errors.any? %>
+	    <div id="error_explanation">
+	      <h2>There were some errors:</h2>
+	      <ul>
+	        <% @link.errors.full_messages.each do |message| %>
+	          <li><%= message %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+		<%= f.text_field :url, size: 100 %>
+		<%= f.submit "Shorten" %>
+	<% end %>
+</center>
+
+<br>
+
+<div id="reload_content">
+	<%= render 'show_url'%>
+</div>
+
+<br>

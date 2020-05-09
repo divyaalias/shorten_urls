@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Analytics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Original Url</th>
+      <th>Short Url</th>
+      <th>Total Clicks</th>
+      <th colspan="3">Top Countries</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <% record = get_record(url)%>
+        <td><%= record.url %></td>
+        <td >&nbsp;<%= record.short%></td>
+        <td>&nbsp;<%= record.clicked %></td>
+        <td>&nbsp;<%= record.stats.distinct.pluck(:country) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
